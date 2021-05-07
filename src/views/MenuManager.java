@@ -2,8 +2,6 @@ package views;
 
 import controller.Library;
 import storage.IOFile;
-
-import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 public class MenuManager {

@@ -10,7 +10,7 @@ public class Library {
     private static final Scanner SCANNER = new Scanner(System.in);
     public static final List<Book> BOOK_LIST = new ArrayList<>();
 
-    static {
+    static  {
         Book b1 = new Book(1, "Tiếng Việt 1", "Sách giáo khoa", 30000, 10, "Mới");
         Book b2 = new Book(2, "Tiếng Việt 2", "Sách giáo khoa", 35000, 10, "Mới");
         Book b3 = new Book(3, "Toán 1", "Sách giáo khoa", 40000, 10, "Mới");
