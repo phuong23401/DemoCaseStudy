@@ -23,13 +23,13 @@ public class Library {
         BOOK_LIST.add(b5);
     }
 
-    public static void show() {
+    public void show() {
         for (Book book : BOOK_LIST) {
             System.out.println(book.toString());
         }
     }
 
-    public static void add() {
+    public void add() {
         while (true) {
             int id = inputId();
             if (checkDuplicateId(id)) {
@@ -38,7 +38,6 @@ public class Library {
                 int price = inputPrice();
                 int num = inputNumOfBook();
                 String status = inputStatus();
-
                 Book book = new Book(id, name, kindOfBook, price, num, status);
                 BOOK_LIST.add(book);
                 break;
@@ -48,7 +47,7 @@ public class Library {
         System.out.println("Đã thêm sách vào thư viện!");
     }
 
-    public static void edit(int id) {
+    public void edit(int id) {
         Book book = getBookById(id);
         if (book != null) {
             book.setName(inputName());
@@ -60,7 +59,7 @@ public class Library {
         }
     }
 
-    public static void delete(int id) {
+    public void delete(int id) {
         Book book = getBookById(id);
         if (book != null) {
             BOOK_LIST.remove(book);
@@ -68,20 +67,20 @@ public class Library {
         }
     }
 
-    public static void searchById(int id) {
+    public void searchById(int id) {
         Book book = getBookById(id);
         if (book != null)
-        System.out.println(book);
+            System.out.println(book);
     }
 
-    public static void searchByName(String name) {
+    public void searchByName(String name) {
         Book book = getBookByName(name);
         if (book != null) {
             System.out.println(book);
         }
     }
 
-    public static void sortByPriceUp() {
+    public void sortByPriceUp() {
         BOOK_LIST.sort(new Comparator<Book>() {
             @Override
             public int compare(Book book1, Book book2) {
@@ -94,7 +93,7 @@ public class Library {
         show();
     }
 
-    public static void sortByPriceDown() {
+    public void sortByPriceDown() {
         BOOK_LIST.sort(new Comparator<Book>() {
             @Override
             public int compare(Book book1, Book book2) {
@@ -107,7 +106,7 @@ public class Library {
         show();
     }
 
-    public static void sortByName() {
+    public void sortByName() {
         BOOK_LIST.sort(new Comparator<Book>() {
             @Override
             public int compare(Book book1, Book book2) {
@@ -117,7 +116,7 @@ public class Library {
         show();
     }
 
-    public static Book showMaxPrice() {
+    public Book showMaxPrice() {
         Book book = null;
         int maxPrice = 0;
         for (Book book1 : BOOK_LIST) {
@@ -129,7 +128,7 @@ public class Library {
         return book;
     }
 
-    public static void leaseBook(int id) {
+    public void leaseBook(int id) {
         Book book = getBookById(id);
         if (book != null) {
             System.out.println("Sách bạn muốn thuê: " + book);
@@ -144,7 +143,7 @@ public class Library {
         }
     }
 
-    private static int getPriceLease(@NotNull Book book, int priceLease) {
+    private int getPriceLease(@NotNull Book book, int priceLease) {
         if (book.getStatus().equals("Cũ")) {
             priceLease = (int) (priceLease * 0.5);
         } else if (book.getStatus().equals("Mới")) {
@@ -153,11 +152,11 @@ public class Library {
         return priceLease;
     }
 
-    private static void afterLease(Book book, int numLease) {
+    private void afterLease(Book book, int numLease) {
         book.setNumOfBook(book.getNumOfBook() - numLease);
     }
 
-    public static boolean checkDuplicateId(int id) {
+    public boolean checkDuplicateId(int id) {
         for (Book book : BOOK_LIST) {
             if (book.getId() == id) {
                 System.out.println("Trùng id. Mời nhập lại!");
@@ -167,7 +166,7 @@ public class Library {
         return true;
     }
 
-    public static Book getBookById(int id) {
+    public Book getBookById(int id) {
         Book book = null;
         for (Book book1 : BOOK_LIST) {
             if (book1.getId() == id) {
@@ -180,7 +179,7 @@ public class Library {
         return book;
     }
 
-    public static Book getBookByName(String name) {
+    public Book getBookByName(String name) {
         Book book = null;
         for (Book book1 : BOOK_LIST) {
             if (book1.getName().equals(name)) {
@@ -193,26 +192,27 @@ public class Library {
         return book;
     }
 
-    public static int inputId() {
+    public int inputId() {
         System.out.print("Nhập id sách: ");
         while (true) {
             try {
                 return Integer.parseInt(SCANNER.nextLine());
             } catch (Exception e) {
-                System.out.println("Id không hợp lệ. Vui lòng nhập lại id!");
+                System.out.println("Id không hợp lệ. Vui lòng nhập lại!");
             }
         }
     }
 
-    public static String inputName() {
+    public String inputName() {
         System.out.print("Nhập tên sách: ");
         return SCANNER.nextLine();
     }
 
-    public static String inputKind() {
+    public String inputKind() {
         System.out.print("Nhập kiểu sách (1-Sách giáo khoa/ 2-Sách tham khảo/ 3-Truyện tranh/ 0-Khác): ");
         String kind = null;
         int choose = Integer.parseInt(SCANNER.nextLine());
+
         switch (choose) {
             case 1:
                 kind = "Sách giáo khoa";
@@ -234,32 +234,33 @@ public class Library {
         return kind;
     }
 
-    public static int inputPrice() {
+    public int inputPrice() {
         System.out.print("Nhập giá sách: ");
         while (true) {
             try {
                 return Integer.parseInt(SCANNER.nextLine());
             } catch (Exception e) {
-                System.out.println("Giá của sách không được có kí tự chữ!");
+                System.out.println("Giá sách không hợp lệ. Vui lòng nhập lại!");
             }
         }
     }
 
-    public static int inputNumOfBook() {
+    public int inputNumOfBook() {
         System.out.print("Nhập số lượng sách: ");
         while (true) {
             try {
                 return Integer.parseInt(SCANNER.nextLine());
             } catch (Exception e) {
-                System.out.println("Số lượng sách không được có kí tự chữ!");
+                System.out.println("Số lượng sách không hợp lệ. Vui lòng nhập lại!");
             }
         }
     }
 
-    public static String inputStatus() {
+    public String inputStatus() {
         System.out.print("Nhập tình trạng sách (0-Cũ/ 1-Mới): ");
         String status = null;
         int choose = Integer.parseInt(SCANNER.nextLine());
+
         switch (choose) {
             case 0:
                 status = "Cũ";
@@ -274,13 +275,13 @@ public class Library {
         return status;
     }
 
-    public static int inputDay() {
+    public int inputDay() {
         System.out.print("Nhập số ngày muốn thuê sách: ");
         while (true) {
             try {
                 return Integer.parseInt(SCANNER.nextLine());
             } catch (Exception e) {
-                System.out.println("Số ngày không được có kí tự chữ!");
+                System.out.println("Số ngày không hợp lệ. Vui lòng nhập lại!");
             }
         }
     }

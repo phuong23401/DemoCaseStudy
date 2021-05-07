@@ -3,10 +3,12 @@ package views;
 import controller.Library;
 import storage.IOFile;
 
+import java.sql.PreparedStatement;
 import java.util.Scanner;
 
 public class MenuManager {
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static final Library PHUONGDZ = new Library();
 
     public static void showMenuManager() {
         while (true) {
@@ -26,18 +28,18 @@ public class MenuManager {
             int id;
             switch (choose) {
                 case 1:
-                    Library.show();
+                    PHUONGDZ.show();
                     break;
                 case 2:
-                    Library.add();
+                    PHUONGDZ.add();
                     break;
                 case 3:
-                    id = Library.inputId();
-                    Library.edit(id);
+                    id = PHUONGDZ.inputId();
+                    PHUONGDZ.edit(id);
                     break;
                 case 4:
-                    id = Library.inputId();
-                    Library.delete(id);
+                    id = PHUONGDZ.inputId();
+                    PHUONGDZ.delete(id);
                     break;
                 case 5:
                     IOFile.readBookList();

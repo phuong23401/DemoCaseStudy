@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class MenuCustomer {
     private static final Scanner SCANNER = new Scanner(System.in);
+    private static final Library PHUONGDZ = new Library();
     private static int id;
 
     public static void showMenuCustomer() {
@@ -24,7 +25,7 @@ public class MenuCustomer {
             int choose = Integer.parseInt(SCANNER.nextLine());
             switch (choose) {
                 case 1:
-                    Library.show();
+                    PHUONGDZ.show();
                     break;
                 case 2:
                     showMenuSort();
@@ -35,8 +36,8 @@ public class MenuCustomer {
                 case 4:
                     System.out.println("//Giá thuê sách cũ: 50%");
                     System.out.println("//Giá thuê sách mới: 70%");
-                    id = Library.inputId();
-                    Library.leaseBook(id);
+                    id = PHUONGDZ.inputId();
+                    PHUONGDZ.leaseBook(id);
                     break;
                 case 0:
                     Main.showMenu();
@@ -62,13 +63,13 @@ public class MenuCustomer {
             int choose = Integer.parseInt(SCANNER.nextLine());
             switch (choose) {
                 case 1:
-                    Library.sortByPriceUp();
+                    PHUONGDZ.sortByPriceUp();
                     break;
                 case 2:
-                    Library.sortByPriceDown();
+                    PHUONGDZ.sortByPriceDown();
                     break;
                 case 3:
-                    Library.sortByName();
+                    PHUONGDZ.sortByName();
                     break;
                 case 0:
                     showMenuCustomer();
@@ -94,15 +95,15 @@ public class MenuCustomer {
             int choose = Integer.parseInt(SCANNER.nextLine());
             switch (choose) {
                 case 1:
-                    id = Library.inputId();
-                    Library.searchById(id);
+                    id = PHUONGDZ.inputId();
+                    PHUONGDZ.searchById(id);
                     break;
                 case 2:
-                    String name = Library.inputName();
-                    Library.searchByName(name);
+                    String name = PHUONGDZ.inputName();
+                    PHUONGDZ.searchByName(name);
                     break;
                 case 3:
-                    Book book = Library.showMaxPrice();
+                    Book book = PHUONGDZ.showMaxPrice();
                     System.out.println(book);
                     break;
                 case 0:
